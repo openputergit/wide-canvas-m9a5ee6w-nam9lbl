@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Pass Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .banner-slider {
+            background: linear-gradient(45deg, #6366f1, #ec4899);
+        }
+        .bottom-nav {
+            backdrop-filter: blur(10px);
+        }
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen">
+    <!-- Main Container -->
+    <div class="max-w-md mx-auto bg-white h-full relative">
+        <!-- Header -->
+        <header class="bg-gray-800 p-4 flex justify-between items-center">
+            <button id="menuBtn" class="text-white text-2xl"><i class="bi bi-list"></i></button>
+            <span class="text-white font-bold">HOME</span>
+            <div class="flex gap-3">
+                <button id="qrBtn" class="text-white text-xl"><i class="bi bi-qr-code"></i></button>
+                <button class="text-white text-xl"><i class="bi bi-bell"></i></button>
+                <button class="text-white text-xl"><i class="bi bi-headset"></i></button>
+            </div>
+        </header>
+
+        <!-- Sidebar Menu -->
+        <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform z-50">
+            <div class="p-4 bg-gray-800 text-white">
+                <div class="flex justify-between items-center">
+                    <span class="font-bold">Menu</span>
+                    <button id="closeMenu" class="text-2xl"><i class="bi bi-x"></i></button>
+                </div>
+            </div>
+            <div class="p-4">
+                <nav class="space-y-3">
+                    <a href="#" class="block p-2 hover:bg-gray-100 rounded"><i class="bi bi-house-door mr-2"></i>Home</a>
+                    <a href="#" class="block p-2 hover:bg-gray-100 rounded"><i class="bi bi-person mr-2"></i>Profile</a>
+                    <a href="#" class="block p-2 hover:bg-gray-100 rounded"><i class="bi bi-gear mr-2"></i>Settings</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="p-4 pb-20">
+            <!-- Ad Banner -->
+            <div class="relative rounded-xl overflow-hidden h-48 mb-6">
+                <div id="bannerSlider" class="banner-slider w-full h-full flex transition-transform duration-500">
+                    <!-- Banners will be inserted here by JS -->
+                </div>
+                <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                    <span class="w-2 h-2 rounded-full bg-white opacity-50"></span>
+                    <span class="w-2 h-2 rounded-full bg-white"></span>
+                    <span class="w-2 h-2 rounded-full bg-white opacity-50"></span>
+                    <span class="w-2 h-2 rounded-full bg-white opacity-50"></span>
+                </div>
+            </div>
+
+            <!-- Emergency Services -->
+            <section class="mb-6">
+                <h2 class="text-lg font-semibold mb-4">Emergency Services</h2>
+                <div class="grid grid-cols-5 gap-4">
+                    <button class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-patch-plus text-gray-600"></i>
+                        </div>
+                        <span class="text-xs">Pet Care</span>
+                    </button>
+                    <button class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-shield-lock text-gray-600"></i>
+                        </div>
+                        <span class="text-xs">Police</span>
+                    </button>
+                    <button class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-hospital text-gray-600"></i>
+                        </div>
+                        <span class="text-xs">Medical</span>
+                    </button>
+                    <button class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-fire text-gray-600"></i>
+                        </div>
+                        <span class="text-xs">Fire</span>
+                    </button>
+                    <button class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-exclamation-triangle text-gray-600"></i>
+                        </div>
+                        <span class="text-xs">SOS</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Upcoming Events -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Upcoming events</h2>
+                    <a href="#" class="text-green-500 text-sm">View all</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <div id="eventsSlider" class="flex gap-4">
+                        <div class="min-w-[280px] rounded-xl overflow-hidden shadow-lg relative">
+                            <img src="https://source.unsplash.com/random/400x200/?concert" alt="Event" class="w-full h-40 object-cover">
+                            <div class="absolute top-2 left-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">1 of 10</div>
+                            <div class="p-4">
+                                <h3 class="font-bold">Tomorrowland</h3>
+                                <p class="text-sm text-gray-600">
+                                    <i class="bi bi-calendar mr-1"></i> Sat, 15 Mar, 2025 | 15:00 to 04:00
+                                    <br>
+                                    <i class="bi bi-geo-alt mr-1"></i> MS Dhoni Pavallion, Ranchi
+                                </p>
+                                <button onclick="bookTicket()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg w-full">Book Now</button>
+                            </div>
+                        </div>
+                        <!-- More events will be added dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section>
+                <h2 class="text-lg font-semibold mb-4">Features</h2>
+                <div class="grid grid-cols-5 gap-4">
+                    <a href="#" class="flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-shop text-blue-600"></i>
+                        </div>
+                        <span class="text-xs text-center">Hyper-Mart</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-xl bg-red-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-cup-hot text-red-600"></i>
+                        </div>
+                        <span class="text-xs text-center">Food court</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-xl bg-green-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-ticket text-green-600"></i>
+                        </div>
+                        <span class="text-xs text-center">Events</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-xl bg-indigo-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-tools text-indigo-600"></i>
+                        </div>
+                        <span class="text-xs text-center">Hyperlocal</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-xl bg-yellow-100 flex items-center justify-center mb-1">
+                            <i class="bi bi-coin text-yellow-600"></i>
+                        </div>
+                        <span class="text-xs text-center">Account</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="fixed bottom-0 left-0 right-0 bg-black bg-opacity-80 bottom-nav">
+            <div class="max-w-md mx-auto flex justify-around p-2">
+                <a href="#" class="text-red-500"><i class="bi bi-house-door-fill text-2xl"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-search text-2xl"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-calendar-event text-2xl"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-megaphone text-2xl"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-currency-rupee text-2xl"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-receipt text-2xl"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-cart text-2xl"></i></a>
+            </div>
+        </nav>
+
+        <!-- QR Code Modal -->
+        <div id="qrModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-xl max-w-sm w-full mx-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold">Your QR Code</h3>
+                    <button onclick="closeQRModal()" class="text-2xl">&times;</button>
+                </div>
+                <div class="flex justify-center mb-4">
+                    <div id="qrcode" class="p-4 bg-gray-100 rounded-lg"></div>
+                </div>
+                <p class="text-center text-sm text-gray-600">Scan this code to share your profile</p>
+            </div>
+        </div>
+
+        <!-- Ticket Booking Modal -->
+        <div id="ticketModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-xl max-w-sm w-full mx-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold">Booking Confirmation</h3>
+                    <button onclick="closeTicketModal()" class="text-2xl">&times;</button>
+                </div>
+                <div class="space-y-4">
+                    <p class="text-center">Your ticket has been booked successfully!</p>
+                    <div id="ticketQR" class="flex justify-center">
+                        <!-- QR Code will be inserted here -->
+                    </div>
+                    <div class="text-center text-sm text-gray-600">
+                        <p>Event: Tomorrowland</p>
+                        <p>Date: Sat, 15 Mar, 2025</p>
+                        <p>Time: 15:00 to 04:00</p>
+                        <p>Venue: MS Dhoni Pavallion, Ranchi</p>
+                    </div>
+                    <button onclick="closeTicketModal()" class="w-full bg-green-500 text-white py-2 rounded-lg">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
+    <script>
+        // Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const sidebar = document.getElementById('sidebar');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+        });
+
+        // QR Code Modal
+        const qrBtn = document.getElementById('qrBtn');
+        const qrModal = document.getElementById('qrModal');
+
+        qrBtn.addEventListener('click', () => {
+            qrModal.classList.remove('hidden');
+            qrModal.classList.add('flex');
+            generateQR();
+        });
+
+        function closeQRModal() {
+            qrModal.classList.add('hidden');
+            qrModal.classList.remove('flex');
+        }
+
+        function generateQR() {
+            const qr = qrcode(4, 'L');
+            qr.addData('User-ID: 123456789');
+            qr.make();
+            document.getElementById('qrcode').innerHTML = qr.createImgTag(5);
+        }
+
+        // Banner Slider
+        const banners = [
+            { color: 'from-purple-500 to-pink-500' },
+            { color: 'from-blue-500 to-green-500' },
+            { color: 'from-yellow-500 to-red-500' },
+            { color: 'from-indigo-500 to-purple-500' }
+        ];
+
+        const bannerSlider = document.getElementById('bannerSlider');
+        let currentBanner = 0;
+
+        function createBanners() {
+            banners.forEach((banner) => {
+                const div = document.createElement('div');
+                div.className = `w-full h-full flex-shrink-0 bg-gradient-to-r ${banner.color}`;
+                bannerSlider.appendChild(div);
+            });
+        }
+
+        function rotateBanners() {
+            currentBanner = (currentBanner + 1) % banners.length;
+            bannerSlider.style.transform = `translateX(-${currentBanner * 100}%)`;
+        }
+
+        createBanners();
+        setInterval(rotateBanners, 3000);
+
+        // Ticket Booking
+        const ticketModal = document.getElementById('ticketModal');
+
+        function bookTicket() {
+            ticketModal.classList.remove('hidden');
+            ticketModal.classList.add('flex');
+            generateTicketQR();
+        }
+
+        function closeTicketModal() {
+            ticketModal.classList.add('hidden');
+            ticketModal.classList.remove('flex');
+        }
+
+        function generateTicketQR() {
+            const qr = qrcode(4, 'L');
+            qr.addData('Ticket-ID: TML-2025-' + Math.random().toString(36).substr(2, 9));
+            qr.make();
+            document.getElementById('ticketQR').innerHTML = qr.createImgTag(5);
+        }
+
+        // Events Slider
+        const events = [
+            { name: 'Tomorrowland', date: 'Sat, 15 Mar, 2025', time: '15:00 to 04:00', venue: 'MS Dhoni Pavallion, Ranchi' },
+            { name: 'Rock Festival', date: 'Sun, 16 Mar, 2025', time: '18:00 to 23:00', venue: 'City Arena' },
+            { name: 'Jazz Night', date: 'Fri, 21 Mar, 2025', time: '20:00 to 23:00', venue: 'Blue Note Club' }
+        ];
+
+        const eventsSlider = document.getElementById('eventsSlider');
+
+        events.forEach((event, index) => {
+            if (index === 0) return; // Skip first event as it's already in HTML
+            const eventDiv = document.createElement('div');
+            eventDiv.className = 'min-w-[280px] rounded-xl overflow-hidden shadow-lg relative';
+            eventDiv.innerHTML = `
+                <img src="https://source.unsplash.com/random/400x200/?concert" alt="Event" class="w-full h-40 object-cover">
+                <div class="absolute top-2 left-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">${index + 1} of 10</div>
+                <div class="p-4">
+                    <h3 class="font-bold">${event.name}</h3>
+                    <p class="text-sm text-gray-600">
+                        <i class="bi bi-calendar mr-1"></i> ${event.date} | ${event.time}
+                        <br>
+                        <i class="bi bi-geo-alt mr-1"></i> ${event.venue}
+                    </p>
+                    <button onclick="bookTicket()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded-lg w-full">Book Now</button>
+                </div>
+            `;
+            eventsSlider.appendChild(eventDiv);
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
